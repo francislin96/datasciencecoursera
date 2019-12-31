@@ -1,7 +1,5 @@
 library(dplyr)
 
-setwd("~/R/coursera/Getting and Cleaning Data/")
-
 # Download and unzip
 if (!file.exists("data.zip")){
     download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", "data.zip")
@@ -10,18 +8,16 @@ if (!file.exists("UCI HAR Dataset")) {
     unzip("data.zip") 
 }
 
-setwd("~/R/coursera/Getting and Cleaning Data/UCI HAR Dataset/")
-
 # 1. Merges the training and test sets to create one data set.
 
-features <- read.table("features.txt", stringsAsFactors=FALSE)[,c(2)]
-activities <- read.table("activity_labels.txt", stringsAsFactors=FALSE)[,2]
-subject_test <- read.table("test/subject_test.txt", col.names = "Subject")
-x_test <- read.table("test/X_test.txt", col.names = features)
-y_test <- read.table("test/y_test.txt", col.names = "Activity")
-subject_train <- read.table("train/subject_train.txt", col.names = "Subject")
-x_train <- read.table("train/X_train.txt", col.names = features)
-y_train <- read.table("train/y_train.txt", col.names = "Activity")
+features <- read.table("UCI HAR Dataset/features.txt", stringsAsFactors=FALSE)[,c(2)]
+activities <- read.table("UCI HAR Dataset/activity_labels.txt", stringsAsFactors=FALSE)[,2]
+subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt", col.names = "Subject")
+x_test <- read.table("UCI HAR Dataset/test/X_test.txt", col.names = features)
+y_test <- read.table("UCI HAR Dataset/test/y_test.txt", col.names = "Activity")
+subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt", col.names = "Subject")
+x_train <- read.table("UCI HAR Dataset/train/X_train.txt", col.names = features)
+y_train <- read.table("UCI HAR Dataset/train/y_train.txt", col.names = "Activity")
 S <- rbind(subject_train, subject_test)
 X <- rbind(x_train, x_test)
 Y <- rbind(y_train, y_test)
@@ -49,5 +45,5 @@ for (i in 1:nrow(replacements)) {
 tidydata <- tidy %>% 
     group_by(Subject, Activity) %>% 
     summarize_all(mean)
-setwd("~/R/coursera/Getting and Cleaning Data/")
+
 write.table(tidydata, "tidydata.txt", row.name=FALSE)
