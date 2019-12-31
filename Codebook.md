@@ -15,6 +15,7 @@ Activity values were replaced by their long version provided by activity_labels.
 ## 4. Appropriately labels the data set with descriptive variable names.
 
 A for-loop was used to apply `gsub` to replace certain strings in the column names to provide them with more descriptive variable names. 
+
     - `Acc` was replaced by `Accelerometer`
     - `Gyro` was replaced by `Gyroscope`
     - `BodyBody` was replaced by `Body`
@@ -22,10 +23,10 @@ A for-loop was used to apply `gsub` to replace certain strings in the column nam
     - `mean` was replaced by `Mean`
     - `std` was replaced by `STD`
     - `freq` was replaced by `Frequency`
-    - `\\.\\.\\.` was replaced by `\\.`
+    - `...` was replaced by `.`
     - any column name beginning with `t` now begins with `Time`
     - any column name beginning with `f` now begins with `Frequency`
-    - any column name ending with `\\.\\.` had them removed.
+    - any column name ending with `..` had them removed.
 
 ## 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
